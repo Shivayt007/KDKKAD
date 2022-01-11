@@ -27,7 +27,7 @@ This is a Telegram Bot written in Python for mirroring files on the Internet to 
 - Update bot at startup and with restart command using `UPSTREAM_REPO`
 - Clone/Zip/Unzip/Count from gdtot links (main script from [Yusuf](https://github.com/oxosec)) and delete first cloned file from main drive or TeamDrive
 - Qbittorrent seed until reaching specific ratio or time
-- Rss feed. Based on this repository [rss-chan](https://github.com/hyPnOtICDo0g/rss-chan)
+- Rss feed and filter. Based on this repository [rss-chan](https://github.com/hyPnOtICDo0g/rss-chan)
 - Save leech settings including thumbnails in database
 - Many bugs have been fixed
 
@@ -163,7 +163,7 @@ Fill up rest of the fields. Meaning of each field is discussed below:
   >exe.io, gplinks.in, shrinkme.io, urlshortx.com, shortzon.com, bit.ly, shorte.st, linkvertise.com , ouo.io
 - `SEARCH_API_LINK`: Search api app link. Get your api from deploying this [repository](https://github.com/Ryuk-me/Torrents-Api). **Note**: Don't add slash at the end.
   - Supported Sites:
-  >rarbg, 1337x, yts, etzv, tgx, torlock, piratebay, nyaasi, ettv
+  >1337x, YTS, Eztv, Torrent Galaxy, Torlock, Piratebay, Nyaasi, Rarbg, Ettv, Zooqle, KickAss, Bitsearch, Glodls
 - `PHPSESSID` and `CRYPT`: Cookies for gdtot google drive link generator. Follow these [steps](https://github.com/anasty17/mirror-leech-telegram-bot/tree/master#gdtot-cookies).
 - `SEARCH_PLUGINS`: List of qBittorrent search plugins (github raw links). I have added some plugins, you can remove/add plugins as you want. Main Source: [qBittorrent Search Plugins (Official/Unofficial)](https://github.com/qbittorrent/search-plugins/wiki/Unofficial-search-plugins).
 - `RSS_DELAY`: Time in seconds for rss refresh interval. Recommended `900` seconds at least. Empty means 900 s (default time).

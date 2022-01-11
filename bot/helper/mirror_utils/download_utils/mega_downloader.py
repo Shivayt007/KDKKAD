@@ -1,8 +1,8 @@
 import os
 import random
 import string
-import threading
 
+from threading import Event
 from mega import (MegaApi, MegaListener, MegaRequest, MegaTransfer, MegaError)
 
 from bot import LOGGER, MEGA_API_KEY, download_dict_lock, download_dict, MEGA_EMAIL_ID, MEGA_PASSWORD
@@ -17,7 +17,7 @@ class MegaAppListener(MegaListener):
     _NO_EVENT_ON = (MegaRequest.TYPE_LOGIN,MegaRequest.TYPE_FETCH_NODES)
     NO_ERROR = "no error"
 
-    def __init__(self, continue_event: threading.Event, listener):
+    def __init__(self, continue_event: Event, listener):
         self.continue_event = continue_event
         self.node = None
         self.public_node = None
@@ -122,7 +122,7 @@ class MegaAppListener(MegaListener):
 class AsyncExecutor:
 
     def __init__(self):
-        self.continue_event = threading.Event()
+        self.continue_event = Event()
 
     def do(self, function, args):
         self.continue_event.clear()
@@ -161,7 +161,6 @@ def add_mega_download(mega_link: str, path: str, listener):
         if not listener.extract:
             gd = GoogleDriveHelper()
             smsg, button = gd.drive_list(mname, True)
-            del gd
             if smsg:
                 msg1 = "File/Folder is already available in Drive.\nHere are the search results:"
                 return sendMarkup(msg1, listener.bot, listener.update, button)

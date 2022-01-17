@@ -64,7 +64,7 @@ class TgUploader:
 
     async def __upload_file(self, up_path, filee, dirpath):
         if CUSTOM_FILENAME is not None:
-            cap_mono = f"{CUSTOM_FILENAME} <code>{filee}</code>"
+            cap_mono = f"<b>{CUSTOM_FILENAME} {filee}</b>"
             filee = f"{CUSTOM_FILENAME} {filee}"
             new_path = os.path.join(dirpath, filee)
             os.rename(up_path, new_path)
@@ -73,7 +73,7 @@ class TgUploader:
             if 'www.TamilBlasters.sbs'in filee:
                 filee = filee.replace('www.TamilBlasters.sbs','')
                 filee = filee.strip().strip("-")
-                cap_mono = f"<code>{filee[1:]}</code>"
+                cap_mono = f"<b>{filee[1:]}</b>"
                 filee = f"{filee[1:]}"
                 new_path = os.path.join(dirpath, filee)
                 os.rename(up_path, new_path)

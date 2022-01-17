@@ -71,7 +71,7 @@ class TgUploader:
             up_path = new_path
         else:
             if filee.startswith('www'):
-                filee = ''.join(filee.split()[1:])
+                filee = ' '.join(filee.split()[1:])
                 filee = filee.strip("-")
                 cap_mono = f"<b>{filee}</b>"
                 filee = f"{filee}"

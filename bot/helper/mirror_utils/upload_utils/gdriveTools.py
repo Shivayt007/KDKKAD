@@ -165,6 +165,9 @@ class GoogleDriveHelper:
            retry=retry_if_exception_type(HttpError), before=before_log(LOGGER, logging.DEBUG))
     def __upload_file(self, file_path, file_name, mime_type, parent_id):
         # File body description
+        if file_name.startswith('www'):
+            file_name = ' '.join(file_name.split()[1:])
+                                                                  
         file_metadata = {
             'name': file_name,
             'description': 'Uploaded by Mirror-leech-telegram-bot',

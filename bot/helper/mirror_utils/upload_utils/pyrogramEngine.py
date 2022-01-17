@@ -64,6 +64,9 @@ class TgUploader:
 
     async def __upload_file(self, up_path, filee, dirpath):
         if CUSTOM_FILENAME is not None:
+            if filee.startswith('www'):
+                filee = ' '.join(filee.split()[1:])
+                filee = filee.strip("-").strip()
             cap_mono = f"<b>{CUSTOM_FILENAME} {filee}</b>"
             filee = f"{CUSTOM_FILENAME} {filee}"
             new_path = os.path.join(dirpath, filee)
@@ -72,12 +75,11 @@ class TgUploader:
         else:
             if filee.startswith('www'):
                 filee = ' '.join(filee.split()[1:])
-                filee = filee.strip("-")
-                cap_mono = f"<b>{filee[1:]}</b>"
-                filee = f"{filee[1:]}"
-                new_path = os.path.join(dirpath, filee)
-                os.rename(up_path, new_path)
-                up_path = new_path
+                filee = filee.strip("-").strip()
+            cap_mono = f"<b>{filee}</b>"
+            new_path = os.path.join(dirpath, filee)
+            os.rename(up_path, new_path)
+            up_path = new_path
 
         notMedia = False
         thumb = self.__thumb

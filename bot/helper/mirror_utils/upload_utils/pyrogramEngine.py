@@ -73,8 +73,8 @@ class TgUploader:
             if filee.startswith('www'):
                 filee = ' '.join(filee.split()[1:])
                 filee = filee.strip("-")
-                cap_mono = f"<b>{filee}</b>"
-                filee = f"{filee}"
+                cap_mono = f"<b>{filee[1:]}</b>"
+                filee = f"{filee[1:]}"
                 new_path = os.path.join(dirpath, filee)
                 os.rename(up_path, new_path)
                 up_path = new_path

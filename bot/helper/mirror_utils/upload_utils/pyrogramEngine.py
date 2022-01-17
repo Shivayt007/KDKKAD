@@ -73,7 +73,8 @@ class TgUploader:
             if 'www.TamilBlasters.sbs'in filee:
                 filee = filee.replace('www.TamilBlasters.sbs','')
                 cap_mono = f"<code>{filee}</code>"
-                filee = f"{CUSTOM_FILENAME} {filee}"
+                filee = filee.strip().strip("-")
+                filee = f"{filee}"
                 new_path = os.path.join(dirpath, filee)
                 os.rename(up_path, new_path)
                 up_path = new_path

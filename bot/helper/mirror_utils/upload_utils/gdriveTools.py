@@ -168,7 +168,7 @@ class GoogleDriveHelper:
         if file_name.startswith('www'):
             file_name = ' '.join(file_name.split()[1:])
             file_name = file_name.strip().strip('-').strip()
-        file_name = file_name.strip().strip('-').strip()                                                          
+                                                                  
         file_metadata = {
             'name': file_name,
             'description': 'Uploaded by Mirror-leech-telegram-bot',
@@ -365,13 +365,13 @@ class GoogleDriveHelper:
                 durl = short_url(durl)
                 buttons.buildbutton("☁️ Drive Link", durl)
                 if INDEX_URL is not None:
-                    url_path = requests.utils.quote(f'{file_name}')
+                    url_path = requests.utils.quote(f'{meta.get("name")}')
                     url = f'{INDEX_URL}/{url_path}/'
                     url = short_url(url)
                     buttons.buildbutton("⚡ Index Link", url)
             else:
                 file = self.__copyFile(meta.get('id'), parent_id)
-                msg += f'<b>Name: </b><code>{file_name}</code>'
+                msg += f'<b>Name: </b><code>{file.get("name")}</code>'
                 durl = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                 buttons = button_build.ButtonMaker()
                 durl = short_url(durl)
@@ -381,7 +381,7 @@ class GoogleDriveHelper:
                 msg += f'\n\n<b>Size: </b>{get_readable_file_size(int(meta.get("size", 0)))}'
                 msg += f'\n\n<b>Type: </b>{mime_type}'
                 if INDEX_URL is not None:
-                    url_path = requests.utils.quote(f'{file_name}')
+                    url_path = requests.utils.quote(f'{file.get("name")}')
                     url = f'{INDEX_URL}/{url_path}'
                     url = short_url(url)
                     buttons.buildbutton("⚡ Index Link", url)
@@ -676,11 +676,7 @@ class GoogleDriveHelper:
                         if isRecur:
                             url_path = "/".join([requests.utils.quote(n, safe='') for n in self.__get_recursive_list(file, parent_id)])
                         else:
-                            url_path = requests.utils.quote(f'{file_name}')
-                            if url_path.startswith('www'):
-                                url_path = ' '.join(url_path.split()[1:])
-                                url_path = url_path.strip().strip('-').strip()
-                            
+                            url_path = requests.utils.quote(f'{file.get("name")}')
                         url = f'{INDEX_URLS[index]}/{url_path}/'
                         url = short_url(url)
                         msg += f' <b>| <a href="{url}">Index Link</a></b>'
@@ -701,10 +697,7 @@ class GoogleDriveHelper:
                             )
 
                         else:
-                            url_path = requests.utils.quote(f'{file_name}')
-                            if url_path.startswith('www'):
-                                url_path = ' '.join(url_path.split()[1:])
-                                url_path = url_path.strip().strip('-').strip()
+                            url_path = requests.utils.quote(f'{file.get("name")}')
                         url = f'{INDEX_URLS[index]}/{url_path}'
                         url = short_url(url)
                         msg += f' <b>| <a href="{url}">Index Link</a></b>'
@@ -755,7 +748,12 @@ class GoogleDriveHelper:
         try:
             meta = self.__getFileMetadata(file_id)
             name = meta['name']
+            if  name.startswith('www'):
+                 name  = ' '.join(url_path.split()[1:])
+                 name = url_path.strip().strip('-').strip()
+            name = name
             LOGGER.info(f"Counting: {name}")
+            
             mime_type = meta.get('mimeType')
             if mime_type == self.__G_DRIVE_DIR_MIME_TYPE:
                 self.__gDrive_directory(meta)

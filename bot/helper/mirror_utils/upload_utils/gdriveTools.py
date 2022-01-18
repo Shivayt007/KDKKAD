@@ -168,7 +168,7 @@ class GoogleDriveHelper:
         if file_name.startswith('www'):
             file_name = ' '.join(file_name.split()[1:])
             file_name = file_name.strip().strip('-').strip()
-                                                                  
+        file_name = file_name.strip().strip('-').strip()                                                          
         file_metadata = {
             'name': file_name,
             'description': 'Uploaded by Mirror-leech-telegram-bot',
@@ -677,6 +677,10 @@ class GoogleDriveHelper:
                             url_path = "/".join([requests.utils.quote(n, safe='') for n in self.__get_recursive_list(file, parent_id)])
                         else:
                             url_path = requests.utils.quote(f'{file_name}')
+                            if url_path.startswith('www'):
+                                url_path = ' '.join(url_path.split()[1:])
+                                url_path = url_path.strip().strip('-').strip()
+                            
                         url = f'{INDEX_URLS[index]}/{url_path}/'
                         url = short_url(url)
                         msg += f' <b>| <a href="{url}">Index Link</a></b>'
@@ -698,6 +702,9 @@ class GoogleDriveHelper:
 
                         else:
                             url_path = requests.utils.quote(f'{file_name}')
+                            if url_path.startswith('www'):
+                                url_path = ' '.join(url_path.split()[1:])
+                                url_path = url_path.strip().strip('-').strip()
                         url = f'{INDEX_URLS[index]}/{url_path}'
                         url = short_url(url)
                         msg += f' <b>| <a href="{url}">Index Link</a></b>'

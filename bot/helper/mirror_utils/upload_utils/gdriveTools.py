@@ -748,12 +748,7 @@ class GoogleDriveHelper:
         try:
             meta = self.__getFileMetadata(file_id)
             name = meta['name']
-            if  name.startswith('www'):
-                 name  = ' '.join(url_path.split()[1:])
-                 name = url_path.strip().strip('-').strip()
-            name = name
             LOGGER.info(f"Counting: {name}")
-            
             mime_type = meta.get('mimeType')
             if mime_type == self.__G_DRIVE_DIR_MIME_TYPE:
                 self.__gDrive_directory(meta)

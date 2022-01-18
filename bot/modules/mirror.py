@@ -242,10 +242,12 @@ class MirrorListener:
             buttons.buildbutton("☁️ Drive Link", link)
             LOGGER.info(f'Done Uploading {download_dict[self.uid].name()}')
             if INDEX_URL is not None:
-                url_path = requests.utils.quote(f'{download_dict[self.uid].name()}')
-                if url_path.startswith('www'):
-                    url_path = ' '.join(url_path.split()[1:])
-                    url_path = url_path.strip().strip('-').strip()
+                spa = f'{download_dict[self.uid].name()}'
+                if spa.startswith('www'):
+                    spa = ' '.join(spa.split()[1:])
+                    spa = spa.strip().strip('-').strip()
+                url_path = requests.utils.quote(f'{spa}')
+                
                 share_url = f'{INDEX_URL}/{url_path}'
                 if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                     share_url += '/'

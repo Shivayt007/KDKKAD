@@ -242,11 +242,12 @@ class MirrorListener:
             buttons.buildbutton("☁️ Drive Link", link)
             LOGGER.info(f'Done Uploading {download_dict[self.uid].name()}')
             if INDEX_URL is not None:
+                te_name = "TELEGRAM ID : @Trvpn"
                 spa = f'{download_dict[self.uid].name()}'
                 if spa.startswith('www'):
                     spa = ' '.join(spa.split()[1:])
                     spa = spa.strip().strip('-').strip()
-                url_path = requests.utils.quote(f'{spa}')
+                url_path = requests.utils.quote(f'{te_name} {spa}')
                 
                 share_url = f'{INDEX_URL}/{url_path}'
                 if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):

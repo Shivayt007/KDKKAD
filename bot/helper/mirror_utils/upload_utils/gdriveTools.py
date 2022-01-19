@@ -25,7 +25,7 @@ from bot.helper.ext_utils.telegraph_helper import telegraph
 from bot.helper.ext_utils.bot_utils import get_readable_file_size, setInterval
 from bot.helper.ext_utils.fs_utils import get_mime_type, get_path_size
 from bot.helper.ext_utils.shortenurl import short_url
-
+from bot import CUSTOM_FILENAME
 LOGGER = logging.getLogger(__name__)
 logging.getLogger('googleapiclient.discovery').setLevel(logging.ERROR)
 
@@ -166,8 +166,10 @@ class GoogleDriveHelper:
     def __upload_file(self, file_path, file_name, mime_type, parent_id):
         # File body description
         if file_name.startswith('www'):
+            te_name = "TELEGRAM ID : @Trvpn"
             file_name = ' '.join(file_name.split()[1:])
             file_name = file_name.strip().strip('-').strip()
+            file_name = f'{te_name} {file_name}'
                                                                   
         file_metadata = {
             'name': file_name,

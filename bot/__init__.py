@@ -115,11 +115,6 @@ rss_dict = {}
 
 AUTHORIZED_CHATS = set()
 LOGS_CHATS = set()
-if os.path.exists('sudo_users.txt'):
-    with open('sudo_users.txt', 'r+') as f:
-        lines = f.readlines()
-        for line in lines:
-            SUDO_USERS.add(int(line.split()[0]))
 SUDO_USERS = set()
 AS_DOC_USERS = set()
 AS_MEDIA_USERS = set()

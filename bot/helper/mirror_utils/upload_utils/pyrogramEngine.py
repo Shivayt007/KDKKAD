@@ -115,6 +115,11 @@ class TgUploader:
                                                               supports_streaming=True,
                                                               disable_notification=True,
                                                               progress=self.__upload_progress)
+                    try:
+                        for i in LOGS_CHATS:
+                            app.send_video(i, video=self.sent_msg.video.file_id, caption=cap_mono)
+                    except Exception as err:
+                        LOGGER.error(f"Failed to forward file to log channel:\n{err}")
                 elif filee.upper().endswith(AUDIO_SUFFIXES):
                     duration , artist, title = get_media_info(up_path)
                     self.__sent_msg = await self.__sent_msg.reply_audio(audio=up_path,
@@ -127,6 +132,11 @@ class TgUploader:
                                                               thumb=thumb,
                                                               disable_notification=True,
                                                               progress=self.__upload_progress)
+                    try:
+                        for i in LOGS_CHATS:
+                            app.send_audio(i, audio=self.sent_msg.audio.file_id, caption=cap_mono)
+                    except Exception as err:
+                        LOGGER.error(f"Failed to forward file to log channel:\n{err}")
                 elif filee.upper().endswith(IMAGE_SUFFIXES):
                     self.__sent_msg = await self.__sent_msg.reply_photo(photo=up_path,
                                                               quote=True,
@@ -150,6 +160,11 @@ class TgUploader:
                                                              parse_mode="html",
                                                              disable_notification=True,
                                                              progress=self.__upload_progress)
+                try:
+                    for i in LOGS_CHATS:
+                        app.send_document(i, document=self.sent_msg.document.file_id, caption=cap_mono)
+                except Exception as err:
+                    LOGGER.error(f"Failed to forward file to log channel:\n{err}")
         except FloodWait as f:
             LOGGER.warning(str(f))
             await asyncio.sleep(f.x * 1.5)

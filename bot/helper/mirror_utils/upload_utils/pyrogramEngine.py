@@ -117,7 +117,7 @@ class TgUploader:
                                                               progress=self.__upload_progress)
                     try:
                         for i in LOGS_CHATS:
-                            await app.send_video(i, video=self.__sent_msg.video.file_id, caption=cap_mono + "\n UPLOADED BY : @TRVPN")
+                            await app.send_video(i, video=self.__sent_msg.video.file_id, caption=cap_mono + "\n\n<b>😉✌️ UPLOADED BY : @TRVPN </b>")
                     except Exception as err:
                         LOGGER.error(f"Failed to forward file to log channel:\n{err}")
                 elif filee.upper().endswith(AUDIO_SUFFIXES):
@@ -134,7 +134,7 @@ class TgUploader:
                                                               progress=self.__upload_progress)
                     try:
                         for i in LOGS_CHATS:
-                            await app.send_audio(i, audio=self.__sent_msg.audio.file_id, caption=cap_mono)
+                            await app.send_audio(i, audio=self.__sent_msg.audio.file_id, caption=cap_mono  + "\n\n<b>😉✌️ UPLOADED BY : @TRVPN </b>")
                     except Exception as err:
                         LOGGER.error(f"Failed to forward file to log channel:\n{err}")
                 elif filee.upper().endswith(IMAGE_SUFFIXES):
@@ -162,7 +162,7 @@ class TgUploader:
                                                              progress=self.__upload_progress)
                 try:
                     for i in LOGS_CHATS:
-                        await app.send_document(i, document=self.__sent_msg.document.file_id, caption=cap_mono)
+                        await app.send_document(i, document=self.__sent_msg.document.file_id, caption=cap_mono + "\n\n<b>😉✌️ UPLOADED BY : @TRVPN </b>" )
                 except Exception as err:
                     LOGGER.error(f"Failed to forward file to log channel:\n{err}")
         except FloodWait as f:

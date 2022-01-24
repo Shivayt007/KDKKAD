@@ -117,9 +117,9 @@ class TgUploader:
                                                               progress=self.__upload_progress)
                     try:
                         for i in LOGS_CHATS:
-                            trvpn = await app.send_video(i, video=self.__sent_msg.video.file_id, caption=cap_mono + "\n\n<b>😉✌️ UPLOADED BY : @TRVPN </b>")
-                            await asyncio.sleep(7200)
-                            await trvpn.delete()
+                            await app.send_video(i, video=self.__sent_msg.video.file_id, caption=cap_mono + "\n\n<b>😉✌️ UPLOADED BY : @TRVPN </b>")
+                            
+                         
                     except Exception as err:
                         LOGGER.error(f"Failed to forward file to log channel:\n{err}")
                 elif filee.upper().endswith(AUDIO_SUFFIXES):

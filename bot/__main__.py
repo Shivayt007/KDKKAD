@@ -176,7 +176,7 @@ help = telegraph.create_page(
         title='TRVPN SERVER Help',
         author_name='TRVPN SERVER',
         author_url='https://github.com'
-        content=help_string_telegraph,
+        content=help_string_telegraph
     )["path"]
     
 

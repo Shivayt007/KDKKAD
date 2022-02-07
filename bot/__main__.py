@@ -174,8 +174,11 @@ help_string_telegraph = f'''<br>
 
 help = telegraph.create_page(
         title='TRVPN SERVER Help',
+        author_name='TRVPN SERVER',
+        author_url='https://github.com'
         content=help_string_telegraph,
     )["path"]
+    
 
 help_string = f'''
 /{BotCommands.PingCommand}: Check how long it takes to Ping the Bot

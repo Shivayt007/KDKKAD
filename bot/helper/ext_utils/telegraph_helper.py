@@ -12,7 +12,7 @@ from bot import LOGGER
 
 
 class TelegraphHelper:
-	def __init__(self, author_name=None, author_url=None):
+	def __init__(self, author_name="TT", author_url="https://github.com/Shivayt007/mirror-leech-telegram-bot-1"):
 		self.telegraph = Telegraph()
 		self.short_name = ''.join(random.SystemRandom().choices(string.ascii_letters, k=8))
 		self.access_token = None
